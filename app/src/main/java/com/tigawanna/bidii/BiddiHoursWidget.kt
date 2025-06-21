@@ -1,5 +1,7 @@
 package com.tigawanna.bidii
 
+import android.app.PendingIntent // Make sure this import is present
+import android.content.ComponentName
 import android.content.Context
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -8,7 +10,10 @@ import androidx.glance.GlanceId
 import androidx.glance.GlanceModifier
 import androidx.glance.GlanceTheme
 import androidx.glance.ImageProvider
+import androidx.glance.action.actionStartActivity // Import this
+import androidx.glance.action.clickable
 import androidx.glance.appwidget.GlanceAppWidget
+import androidx.glance.appwidget.GlanceAppWidgetReceiver
 import androidx.glance.appwidget.appWidgetBackground
 import androidx.glance.appwidget.components.Scaffold
 import androidx.glance.appwidget.components.TitleBar
@@ -24,21 +29,16 @@ import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 
 
-class BiddiHoursWidget : GlanceAppWidget() {
+class BidiiHoursWidget : GlanceAppWidget() {
     val bidiiWakatimeHoursKey = stringPreferencesKey("wakatime_hours")
 
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         provideContent {
             val bidiiWakatimeHours = currentState(key = bidiiWakatimeHoursKey) ?: "--:--"
 
-            // Create an action to open your app
-            val intent = context.packageManager.getLaunchIntentForPackage(context.packageName)
-            val action = android.app.PendingIntent.getActivity(
-                context,
-                0,
-                intent,
-                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-            )
+            // Create an action to open your app using ComponentName
+            val componentName = ComponentName(context, MainActivity::class.java)
+            val launchAppAction = actionStartActivity(componentName)
 
             GlanceTheme {
                 Scaffold(
@@ -53,10 +53,10 @@ class BiddiHoursWidget : GlanceAppWidget() {
                     Column(
                         modifier = GlanceModifier
                             .fillMaxSize()
-                            .background(GlanceTheme.colors.widgetBackground)
-                            .clickable(action) // Add click action here
-                            .appWidgetBackground(), // This ensures the click works on the entire widget
-                        horizontalAlignment = Alignment.Horizontal.CenterHorizontally
+                            .clickable(launchAppAction)
+                            ,
+                        horizontalAlignment = Alignment.Horizontal.CenterHorizontally,
+//                        verticalAlignment = Alignment.Vertical.CenterVertically
                     ) {
                         Text(
                             text = bidiiWakatimeHours,
@@ -71,4 +71,9 @@ class BiddiHoursWidget : GlanceAppWidget() {
             }
         }
     }
+}
+
+
+class BidiiHoursWidgetReceiver: GlanceAppWidgetReceiver(){
+    override val glanceAppWidget: GlanceAppWidget = BidiiHoursWidget()
 }

@@ -1,6 +1,7 @@
 package com.tigawanna.bidii
 
 import android.content.ComponentName
+import android.util.Log
 import android.content.Context
 import androidx.compose.ui.unit.sp
 import androidx.datastore.preferences.core.Preferences
@@ -26,24 +27,22 @@ import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 
-object BidiiWidgetConstants {
-    const val DATASTORE_NAME = "bidii_widget_datastore"
-    val WAKATIME_HOURS_KEY = stringPreferencesKey("wakatime_hours")
-    const val DEFAULT_HOURS_DISPLAY = "--:--"
-}
-
 class BidiiHoursWidget : GlanceAppWidget() {
     override var stateDefinition: GlanceStateDefinition<*> = PreferencesGlanceStateDefinition
+
+
 
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         provideContent {
             val prefs = currentState<Preferences>()
+
             val wakatimeHours = prefs[BidiiWidgetConstants.WAKATIME_HOURS_KEY]
                 ?: BidiiWidgetConstants.DEFAULT_HOURS_DISPLAY
 
             val launchAppAction = actionStartActivity(
                 ComponentName(context, MainActivity::class.java)
             )
+
 
             GlanceTheme {
                 Scaffold(

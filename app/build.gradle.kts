@@ -1,8 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose) // Corrected alias for Compose plugin
-    alias(libs.plugins.kotlin.serialization) // Corrected alias for Kotlin Serialization plugin
+    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 android {
@@ -37,6 +37,19 @@ android {
     buildFeatures {
         compose = true
     }
+
+    // Add this packagingOptions block
+    packaging {
+        resources {
+            excludes += "/META-INF/INDEX.LIST"
+            // You might encounter other META-INF conflicts, add them here as needed:
+            // excludes += "/META-INF/LICENSE.txt"
+            // excludes += "/META-INF/NOTICE.txt"
+            // excludes += "/META-INF/DEPENDENCIES"
+            // excludes += "META-INF/AL2.0"
+            // excludes += "META-INF/LGPL2.1"
+        }
+    }
 }
 
 dependencies {
@@ -49,7 +62,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-
+    implementation(libs.androidx.work.runtime.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -73,6 +86,8 @@ dependencies {
     implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.8")
     implementation("io.ktor:ktor-client-logging:2.3.8")
 
+
+
     // Kotlinx Serialization for JSON parsing
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
 
@@ -83,10 +98,4 @@ dependencies {
     // DataStore for preferences - ensure this is the latest stable version
     implementation("androidx.datastore:datastore-preferences:1.1.1")
 
-    // Ktor (ensure versions are consistent and up-to-date)
-    implementation("io.ktor:ktor-client-core:2.3.8") // ktor-client-android includes this
-    implementation("io.ktor:ktor-client-serialization:2.3.8") // ktor-client-content-negotiation is preferred
-
-    // Logback for Ktor logging (if needed, ensure it's compatible)
-    implementation("ch.qos.logback:logback-classic:1.4.14") // Updated to a more recent version
 }

@@ -97,8 +97,8 @@ class BidiiHoursWidget : GlanceAppWidget() {
         fun getTimeTextSize(size: DpSize): androidx.compose.ui.unit.TextUnit {
             return when {
                 size.width >= BIG_SQUARE.width -> 32.sp
-                size.width >= HORIZONTAL_RECTANGLE.width -> 24.sp
-                else -> 20.sp
+                size.width >= HORIZONTAL_RECTANGLE.width -> 26.sp
+                else -> 22.sp
             }
         }
 

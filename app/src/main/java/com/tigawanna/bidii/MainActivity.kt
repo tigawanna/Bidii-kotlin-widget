@@ -63,7 +63,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.ui.text.font.FontWeight
-import com.tigawanna.bidii.utils.WakatimeDataFetcher.updateWidget
+import com.tigawanna.bidii.wakatime.utils.WakatimeDataFetcher
+import com.tigawanna.bidii.wakatime.utils.WakatimeDataFetcher.updateWidget
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.text.SimpleDateFormat
@@ -186,7 +187,7 @@ fun CurrentWidgetDataDisplay(context: Context) {
         scope.launch {
             isRefreshing = true
             try {
-                val result = com.tigawanna.bidii.utils.WakatimeDataFetcher.fetchWakatimeData(context)
+                val result = WakatimeDataFetcher.fetchWakatimeData(context)
                 currentData = if (result.success && result.freshHours != null) {
                     "Fresh Data: ${result.freshHours}"
                 } else if (result.error != null) {
@@ -212,7 +213,7 @@ fun CurrentWidgetDataDisplay(context: Context) {
         scope.launch {
             isRefreshing = true
             try {
-                val result = com.tigawanna.bidii.utils.WakatimeDataFetcher.fetchAndUpdateWidget(context)
+                val result = WakatimeDataFetcher.fetchAndUpdateWidget(context)
                 currentData = if (result.success && result.freshHours != null) {
                     "Updated! Total: ${result.totalTime}"
                 } else if (result.error != null) {

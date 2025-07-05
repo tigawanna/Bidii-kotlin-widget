@@ -1,4 +1,4 @@
-package com.tigawanna.bidii.utils
+package com.tigawanna.bidii.wakatime.utils
 
 import java.util.Locale
 

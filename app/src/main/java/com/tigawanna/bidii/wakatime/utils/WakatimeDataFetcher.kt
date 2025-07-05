@@ -1,4 +1,4 @@
-package com.tigawanna.bidii.utils
+package com.tigawanna.bidii.wakatime.utils
 
 import android.content.Context
 import android.os.Build

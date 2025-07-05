@@ -14,8 +14,8 @@ import androidx.datastore.preferences.core.edit
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import com.tigawanna.bidii.wakatime.WakatimeSDK
-import com.tigawanna.bidii.utils.TimeUtils
-import com.tigawanna.bidii.utils.WakatimeDataFetcher
+import com.tigawanna.bidii.wakatime.utils.TimeUtils
+import com.tigawanna.bidii.wakatime.utils.WakatimeDataFetcher
 import androidx.glance.appwidget.GlanceAppWidgetManager
 
 class WakatimeWorker(

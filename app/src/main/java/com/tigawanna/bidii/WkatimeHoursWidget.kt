@@ -1,7 +1,5 @@
 package com.tigawanna.bidii
 
-import android.content.ComponentName
-
 import android.content.Context
 import android.content.Intent
 import androidx.compose.ui.unit.sp
@@ -10,7 +8,6 @@ import androidx.glance.GlanceId
 import androidx.glance.GlanceModifier
 import androidx.glance.GlanceTheme
 import androidx.glance.ImageProvider
-import androidx.glance.action.actionStartActivity
 import androidx.glance.action.clickable
 import androidx.glance.Image
 import androidx.glance.action.ActionParameters
@@ -23,16 +20,13 @@ import androidx.glance.appwidget.provideContent
 import androidx.glance.currentState
 import androidx.glance.layout.Alignment
 import androidx.glance.layout.Column
-import androidx.glance.layout.Row
 import androidx.glance.layout.fillMaxSize
-import androidx.glance.layout.size
 import androidx.glance.state.GlanceStateDefinition
 import androidx.glance.state.PreferencesGlanceStateDefinition
 import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 import androidx.glance.LocalSize
-import androidx.glance.unit.ColorProvider
 import androidx.glance.appwidget.SizeMode
 import androidx.compose.ui.unit.DpSize
 import com.tigawanna.bidii.wakatime.utils.WakatimeDataFetcher
@@ -40,15 +34,12 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import android.util.Log
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
-import androidx.glance.Button
 import androidx.glance.appwidget.action.actionRunCallback
 import androidx.glance.layout.padding
 import androidx.glance.layout.Spacer
 import androidx.glance.layout.height
-import androidx.glance.layout.width
 
 class RefreshWidgetAction : ActionCallback {
     override suspend fun onAction(

@@ -62,7 +62,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.androidx.work.runtime.ktx)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -71,12 +71,14 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+
+    // Required for WorkManager
+    implementation("androidx.work:work-runtime-ktx:2.9.0")
+    // jetpack glance dependancies
     // For AppWidgets support
     implementation("androidx.glance:glance-appwidget:1.1.1")
-
     // For interop APIs with Material 3
     implementation("androidx.glance:glance-material3:1.1.1")
-
     // For interop APIs with Material 2
     implementation("androidx.glance:glance-material:1.1.1")
 

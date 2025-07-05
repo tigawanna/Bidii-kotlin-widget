@@ -35,7 +35,7 @@ import androidx.glance.LocalSize
 import androidx.glance.unit.ColorProvider
 import androidx.glance.appwidget.SizeMode
 import androidx.compose.ui.unit.DpSize
-import com.tigawanna.bidii.utils.WakatimeDataFetcher
+import com.tigawanna.bidii.wakatime.utils.WakatimeDataFetcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
